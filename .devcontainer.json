@@ -1,0 +1,25 @@
+{
+  // devcontainer base image
+  //"image": "affigueiredo/pyspark-dev-env:latest",
+
+  "build":{"dockerfile": "./Dockerfile"},
+
+  // Container user VS Code should use when connecting
+  "remoteUser": "root",
+
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": ["ms-python.python", "donjayamanne.python-extension-pack"],
+
+  // An array port numbers to forward
+  "appPort": ["4040:4040"],
+
+  // Mount the local folder inside the container
+  "workspaceMount": "source=${localWorkspaceFolder}/app,target=/opt/spark/work-dir/,type=bind,consistency=cached",
+
+  // Default path to open when attaching to a new container.
+  "workspaceFolder": "/opt/spark/work-dir/",
+
+  "remoteEnv": { "MY_VAR": "MY_VAR" },
+
+  "postCreateCommand": "pip install pyspark"
+}
